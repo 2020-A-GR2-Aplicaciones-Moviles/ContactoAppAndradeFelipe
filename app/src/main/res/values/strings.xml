@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ContactoAppAndradeFelipe</string>
+    <string name="login_btn">LOGIN</string>
+    <string name="user_txt">Usuario / e-mail</string>
+    <string name="password_txt">Password</string>
+    <string name="inicio_txt">INICIE SESIÓN PARA EMPEZAR</string>
 </resources>
