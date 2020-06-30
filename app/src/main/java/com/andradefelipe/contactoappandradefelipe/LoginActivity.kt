@@ -1,5 +1,6 @@
 package com.andradefelipe.contactoappandradefelipe
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
@@ -13,7 +14,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        button_login.setOnClickListener {
+        val sharedPref = getPreferences(Context.MODE_PRIVATE)
+
+
+
+       /*button_login.setOnClickListener {
 
             var user = editTextTextEmailAddress.getText().toString()
             var psw = editTextTextPassword.getText().toString()
@@ -30,6 +35,6 @@ class LoginActivity : AppCompatActivity() {
             if (psw.isEmpty() || psw.length < 8) {
                 editTextTextPassword.setError("Contraseña no valida, intente de nuevo")
             }
-        }
+        }*/
     }
 }
