@@ -15,10 +15,11 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         val sharedPref = getPreferences(Context.MODE_PRIVATE)
+        editTextTextEmailAddress.setText ( sharedPref.getString(LOGIN_KEY,"") )
+        editTextTextPassword.setText ( sharedPref.getString(PASSWORD_KEY,"") )
 
 
-
-       /*button_login.setOnClickListener {
+        button_login.setOnClickListener {
 
             var user = editTextTextEmailAddress.getText().toString()
             var psw = editTextTextPassword.getText().toString()
@@ -35,6 +36,21 @@ class LoginActivity : AppCompatActivity() {
             if (psw.isEmpty() || psw.length < 8) {
                 editTextTextPassword.setError("Contraseña no valida, intente de nuevo")
             }
-        }*/
+           //Grabar archivo de preferencias.
+           if(checkBox_Recordarme.isChecked){
+               val editor = sharedPref.edit()
+               editor.putString(LOGIN_KEY,editTextTextEmailAddress.text.toString())
+               editor.putString(PASSWORD_KEY,editTextTextPassword.text.toString())
+               editor.commit()
+           }
+           else {
+               val editor = sharedPref.edit()
+               editor.putString(LOGIN_KEY, "")
+               editor.putString(PASSWORD_KEY, "")
+               editor.commit()
+           }
+           Toast.makeText(this, "Datos Guardados", Toast.LENGTH_SHORT).show()
+
+           }
     }
 }
