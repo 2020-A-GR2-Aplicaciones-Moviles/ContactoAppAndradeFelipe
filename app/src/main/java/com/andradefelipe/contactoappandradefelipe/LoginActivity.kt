@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKeys
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -13,12 +15,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-        val sharedPref = getPreferences(Context.MODE_PRIVATE)
-        editTextTextEmailAddress.setText ( sharedPref.getString(LOGIN_KEY,"") )
-        editTextTextPassword.setText ( sharedPref.getString(PASSWORD_KEY,"") )
-
-
+        LeerDatosDeArchivoPreferenciasEncriptado()
         button_login.setOnClickListener {
 
             var user = editTextTextEmailAddress.getText().toString()
@@ -36,21 +33,51 @@ class LoginActivity : AppCompatActivity() {
             if (psw.isEmpty() || psw.length < 8) {
                 editTextTextPassword.setError("Contraseña no valida, intente de nuevo")
             }
-           //Grabar archivo de preferencias.
-           if(checkBox_Recordarme.isChecked){
-               val editor = sharedPref.edit()
-               editor.putString(LOGIN_KEY,editTextTextEmailAddress.text.toString())
-               editor.putString(PASSWORD_KEY,editTextTextPassword.text.toString())
-               editor.commit()
-           }
-           else {
-               val editor = sharedPref.edit()
-               editor.putString(LOGIN_KEY, "")
-               editor.putString(PASSWORD_KEY, "")
-               editor.commit()
-           }
-           Toast.makeText(this, "Datos Guardados", Toast.LENGTH_SHORT).show()
 
-           }
+            EscribirDatosEnArchivoPreferenciasEncriptado()
+            Toast.makeText(this, "Datos Guardados", Toast.LENGTH_SHORT).show()
+
+        }
+
+    }
+
+    fun EscribirDatosEnArchivoPreferenciasEncriptado() {
+        val masterKeyAlias: String = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+        val sharedPreferences = EncryptedSharedPreferences.create(
+            SECRET_FILENAME,//filename
+            masterKeyAlias,
+            this,//context
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
+
+
+        if (checkBox_Recordarme.isChecked) {
+            val editor = sharedPreferences.edit()
+            editor.putString(LOGIN_KEY, editTextTextEmailAddress.text.toString())
+            editor.putString(PASSWORD_KEY, editTextTextPassword.text.toString())
+            editor.apply()
+        } else {
+            val editor = sharedPreferences.edit()
+            editor.putString(LOGIN_KEY, "")
+            editor.putString(PASSWORD_KEY, "")
+            editor.apply()
+        }
+    }
+    fun LeerDatosDeArchivoPreferenciasEncriptado() {
+        val masterKeyAlias: String = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+        val sharedPreferences = EncryptedSharedPreferences.create(
+            SECRET_FILENAME,//filename
+            masterKeyAlias,
+            this,//context
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
+
+        editTextTextEmailAddress.setText(sharedPreferences.getString(LOGIN_KEY, ""))
+        editTextTextPassword.setText(sharedPreferences.getString(PASSWORD_KEY, ""))
     }
 }
+
+
+
