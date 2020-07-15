@@ -1,6 +1,7 @@
 package com.andradefelipe.contactoappandradefelipe
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
@@ -36,6 +37,13 @@ class LoginActivity : AppCompatActivity() {
 
             EscribirDatosEnArchivoPreferenciasEncriptado()
             Toast.makeText(this, "Datos Guardados", Toast.LENGTH_SHORT).show()
+            if (editTextTextEmailAddress.text.toString().equals("felipe@gmail.com") and editTextTextPassword.text.toString().equals("qwertyui")){
+                var intent = Intent(this,PrincipalTmpActivity::class.java)
+                intent.putExtra(LOGIN_KEY,editTextTextEmailAddress.text.toString())
+                startActivity(intent)
+                finish()
+
+            }
 
         }
 
@@ -77,6 +85,30 @@ class LoginActivity : AppCompatActivity() {
         editTextTextEmailAddress.setText(sharedPreferences.getString(LOGIN_KEY, ""))
         editTextTextPassword.setText(sharedPreferences.getString(PASSWORD_KEY, ""))
     }
+
+    fun EscribirDatosEnArchivoInterno4(){
+        val texto = "texto" + System.lineSeparator() + "almacenado"
+        openFileOutput(CONTACTS_FILENAME, Context.MODE_PRIVATE).bufferedWriter().use {fos ->
+            fos.write(editTextTextEmailAddress.text.toString())
+            fos.write(System.lineSeparator())
+            fos.write(editTextTextEmailAddress.text.toString())
+        }
+    }
+
+
+    fun LeerDatosEnArchivoInterno4() {
+        openFileInput(CONTACTS_FILENAME).bufferedReader().use {
+            val datoLeido = it.readText()
+            if (datoLeido.isNullOrEmpty()) return
+            val textArray = datoLeido.split(System.lineSeparator())
+            val login  = textArray[0]
+            val clave = textArray[1]
+        }
+    }
+
+
+
+
 }
 
 
