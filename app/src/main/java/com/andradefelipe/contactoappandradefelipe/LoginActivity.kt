@@ -37,10 +37,13 @@ class LoginActivity : AppCompatActivity() {
 
             EscribirDatosEnArchivoPreferenciasEncriptado()
             Toast.makeText(this, "Datos Guardados", Toast.LENGTH_SHORT).show()
+
+
             if (editTextTextEmailAddress.text.toString().equals("felipe@gmail.com") and editTextTextPassword.text.toString().equals("qwertyui")){
-                var intent = Intent(this,PrincipalTmpActivity::class.java)
+                var intent = Intent(this,PrincipalTmpActivity2::class.java)
                 intent.putExtra(LOGIN_KEY,editTextTextEmailAddress.text.toString())
                 startActivity(intent)
+                Toast.makeText(this, "Validacion de datos exitosa", Toast.LENGTH_LONG).show()
                 finish()
 
             }

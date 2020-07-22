@@ -5,7 +5,18 @@
     <string name="password_txt">Password</string>
     <string name="inicio_txt">INICIE SESIÓN PARA EMPEZAR</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="textViewUserId_texto">User Id:</string>
+    <string name="textViewFirstName_texto">First Name:</string>
+    <string name="textViewLastName_texto">Last Name:</string>
+    <string name="textViewPhoneNumber_texto" translatable="false">Phone Number:</string>
+    <string name="textViewEmailAddress_texto">Email Address:</string>
+    <string name="buttonSave_texto">Save</string>
+    <string name="buttonView_texto">View</string>
+    <string name="buttonUpdate_texto">Update</string>
+    <string name="buttonDelete_texto">Delete</string>
+
     <string name="large_text">
+
         "Material is the metaphor.\n\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
@@ -95,4 +106,13 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="textViewUserId">User id</string>
+    <string name="textViewFirstName">First Name</string>
+    <string name="textViewLastName">Last Name</string>
+    <string name="textViewPhoneNumber">Phone Number</string>
+    <string name="textViewEmailAddress">Email Address</string>
+    <string name="buttonSave">Save</string>
+    <string name="buttonView">View</string>
+    <string name="buttonUpdate">Update</string>
+    <string name="buttonDelete">Delete</string>
 </resources>
