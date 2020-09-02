@@ -8,19 +8,24 @@ import android.util.Patterns
 import android.widget.Toast
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        auth = FirebaseAuth.getInstance();
         LeerDatosDeArchivoPreferenciasEncriptado()
         button_login.setOnClickListener {
 
             var user = editTextTextEmailAddress.getText().toString()
             var psw = editTextTextPassword.getText().toString()
+
+
 
             if (psw.length >= 8 && !user.isEmpty() && !psw.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(
                     user
@@ -34,12 +39,10 @@ class LoginActivity : AppCompatActivity() {
             if (psw.isEmpty() || psw.length < 8) {
                 editTextTextPassword.setError("Contraseña no valida, intente de nuevo")
             }
-
             EscribirDatosEnArchivoPreferenciasEncriptado()
             Toast.makeText(this, "Datos Guardados", Toast.LENGTH_SHORT).show()
 
-
-            if (editTextTextEmailAddress.text.toString().equals("felipe@gmail.com") and editTextTextPassword.text.toString().equals("qwertyui")){
+            if (editTextTextEmailAddress.text.toString().equals("felipe@gmail.com") and editTextTextPassword.text.toString().equals("12345678")){
                 var intent = Intent(this,PrincipalTmpActivity2::class.java)
                 intent.putExtra(LOGIN_KEY,editTextTextEmailAddress.text.toString())
                 startActivity(intent)
@@ -47,6 +50,9 @@ class LoginActivity : AppCompatActivity() {
                 finish()
 
             }
+            //autenticacion con firebase
+
+            AutenticarUsuario(user, psw)
 
         }
 
@@ -108,6 +114,22 @@ class LoginActivity : AppCompatActivity() {
             val clave = textArray[1]
         }
     }
+
+    fun AutenticarUsuario(email:String, password:String){
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    var intent = Intent(this,PrincipalTmpActivity::class.java)
+                    intent.putExtra(LOGIN_KEY,auth.currentUser!!.email)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(baseContext, task.exception!!.message,
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
 
 
 

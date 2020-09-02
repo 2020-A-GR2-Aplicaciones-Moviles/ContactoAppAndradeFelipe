@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "488923430771",
+    "firebase_url": "https://proyectocontactos-7b73a.firebaseio.com",
+    "project_id": "proyectocontactos-7b73a",
+    "storage_bucket": "proyectocontactos-7b73a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488923430771:android:c681cbd5e7fd320801cf06",
+        "android_client_info": {
+          "package_name": "com.andradefelipe.contactoappandradefelipe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488923430771-2qhc1h6sunuklh28mvphdrjb8u2rildo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.andradefelipe.contactoappandradefelipe",
+            "certificate_hash": "303d30e7cbd686e33966c1997e54eca9ee089133"
+          }
+        },
+        {
+          "client_id": "488923430771-646bf7tltjak8tbl02hog8dc1h6rbb1a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlo19ohSDdQ5UNE4nVEek6qXyTjTAUcG8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488923430771-646bf7tltjak8tbl02hog8dc1h6rbb1a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

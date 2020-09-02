@@ -111,12 +111,12 @@
         app:layout_constraintTop_toTopOf="@+id/textViewEmailAddress" />
 
     <ListView
-        android:id="@+id/listViewContacts"
+        android:id="@+id/listViewContacts1"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:background="@color/colorAccent"
+        android:background="@color/cardview_dark_background"
         app:layout_constraintEnd_toEndOf="@+id/editTextEmailAddress"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textViewEmailAddress"
@@ -151,11 +151,19 @@
         android:layout_height="wrap_content"
         android:text="@string/buttonUpdate_texto" />
 
-    <Button
-        android:id="@+id/buttonDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/buttonDelete_texto" />
+        <Button
+            android:id="@+id/buttonDelete"
+            android:layout_width="77dp"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonDelete_texto" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickEnviarCall"
+            android:tint="@color/colorAccent"
+            app:srcCompat="@android:drawable/ic_menu_call" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

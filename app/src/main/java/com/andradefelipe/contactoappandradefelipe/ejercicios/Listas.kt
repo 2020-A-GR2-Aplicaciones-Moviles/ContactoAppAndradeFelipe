@@ -51,4 +51,16 @@ class Listas {
         myList.map{ it + 1 } //devuelve {3,4,5,6,7,8,9}
     }
 
+
+    fun EjemploListaMutableEnteros(){
+        fun MutableList<Int>.swap(index1: Int, index2: Int) {
+            val tmp = this[index1]
+            this[index1] = this[index2]
+            this[index2] = tmp
+        }
+        var myListInt : MutableList<Int> = mutableListOf(1,2)
+        myListInt.swap(1,0)
+        println("$myListInt[0],myListInt[1]")
+    }
+
 }
