@@ -1,2 +1,3 @@
+include ':mymenuapp'
 include ':app'
 rootProject.name = "ContactoAppAndradeFelipe"

@@ -130,6 +130,24 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
+    fun SignUpNewUser(email:String, password:String){
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    Toast.makeText(baseContext, "New user saved.",
+                        Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(baseContext, task.exception!!.message,
+                        Toast.LENGTH_SHORT).show()
+                }
+
+                // ...
+            }
+    }
+
+
+
 
 
 
